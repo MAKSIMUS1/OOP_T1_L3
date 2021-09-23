@@ -6,16 +6,6 @@ using System.Threading.Tasks;
 
 namespace Lab3
 {
-    class HashCode
-    {
-        public string Name;
-
-        public int GetHashCode()
-        {
-            return Name.GetHashCode();
-        }
-    }
-
     public partial class Morrowind
     {
         public void func_1()
@@ -26,6 +16,7 @@ namespace Lab3
 
     public class Books
     {
+
         private string name;
         public string Name
         {
@@ -92,11 +83,14 @@ namespace Lab3
 
         public static int count = 0;
 
-        public Random rnd = new Random();
+        //public Random rnd = new Random();
 
         public readonly int ID;
-        
 
+        static Books()
+        {
+            Console.WriteLine("Начинаем");
+        }
         public Books(string name, string author, string pubhouse, int year, int pages, int price, string typebind,int ID)
         {
             this.name = name;
@@ -106,10 +100,17 @@ namespace Lab3
             this.pages = pages;
             this.price = price;
             this.typebind = typebind;
-            this.ID = rnd.Next();
+            //this.ID = rnd.Next();
             count++;
             Print();
         }
+        string a;
+        private Books(string a) 
+        {
+             this.a = a;
+        }
+        
+
         public void Print()
         {
             Console.WriteLine("name: " + name);
@@ -119,6 +120,8 @@ namespace Lab3
             Console.WriteLine("pages: " + pages);
             Console.WriteLine("price: " + price);
             Console.WriteLine("typebind: " + typebind);
+            var testpri = new Books("private is work");
+            Console.WriteLine(testpri.a);
             Console.WriteLine();
         }
 
@@ -212,13 +215,7 @@ namespace Lab3
 
             Books.Stat(ref Books.count);
             Console.ReadKey();
-
-            HashCode person = new HashCode { Name = "Danila" }; // Сравнение объектов
-            if (person.GetType() == typeof(HashCode))
-            {
-                Console.WriteLine("Оп, Путин не обманул, это действительно класс");
-            }
-            Console.ReadKey();
+      
         }
     }
 }
